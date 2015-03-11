@@ -28,12 +28,22 @@ module.exports = function(grunt) {
 				files: '**/*.html',
 				options: { livereload: true }
 			}
+		},
+		uglify: {
+			my_targets: {
+				files: { 'assets/prod/js/output.min.js' : ['assets/dev/js/**/*.js'] }
+			}
 		}
   });
   // Load Grunt plugins
   grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+
   // Default task(s).
-  grunt.registerTask('default', []);
+  grunt.registerTask('default', [
+		'connect',
+  	'watch'
+	]);
 };
